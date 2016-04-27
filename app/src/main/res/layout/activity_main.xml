@@ -9,4 +9,99 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hornj.tictactoe.MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/board" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target1"
+        android:layout_marginTop="77dp"
+        android:src="@drawable/blue_circle"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:onClick="makeMove" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target2"
+        android:src="@drawable/blue_circle"
+        android:layout_alignBottom="@+id/target1"
+        android:layout_centerHorizontal="true"
+        android:onClick="makeMove" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target3"
+        android:src="@drawable/blue_circle"
+        android:layout_alignTop="@+id/target2"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginRight="41dp"
+        android:layout_marginEnd="41dp"
+        android:onClick="makeMove" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target6"
+        android:layout_marginTop="77dp"
+        android:src="@drawable/blue_circle"
+        android:layout_below="@+id/target3"
+        android:layout_alignLeft="@+id/target3"
+        android:layout_alignStart="@+id/target3" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target5"
+        android:src="@drawable/blue_circle"
+        android:layout_alignTop="@+id/target6"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target4"
+        android:src="@drawable/blue_circle"
+        android:layout_alignTop="@+id/target5"
+        android:layout_alignLeft="@+id/target1"
+        android:layout_alignStart="@+id/target1" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target7"
+        android:src="@drawable/blue_circle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/target4"
+        android:layout_alignStart="@+id/target4"
+        android:layout_marginBottom="77dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target8"
+        android:src="@drawable/blue_circle"
+        android:layout_alignBottom="@+id/target7"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/target9"
+        android:src="@drawable/blue_circle"
+        android:layout_alignBottom="@+id/target8"
+        android:layout_alignLeft="@+id/target6"
+        android:layout_alignStart="@+id/target6" />
 </RelativeLayout>

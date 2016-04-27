@@ -2,10 +2,22 @@ package com.hornj.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
+
+    public void makeMove(View v) {
+        String fieldName = getResources().getResourceEntryName(v.getId());
+        Log.i("DEBUG", fieldName);
+        ImageView test = (ImageView)findViewById(v.getId());
+        test.setVisibility(View.INVISIBLE);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +45,26 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onTouchEvent(MotionEvent e)
+    {
+        int xpos=(int) e.getX();
+        int ypos=(int) e.getY();
+        switch (e.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+//                Log.d("DEBUG", "On touch (down)" + String.valueOf(xpos) + String.valueOf(ypos));
+                Log.d("DEBUG", "X: " + String.valueOf(xpos));
+                Log.d("DEBUG", "Y: " + String.valueOf(ypos));
+
+//            case MotionEvent.ACTION_UP:
+//                Log.d("DEBUG", "On touch (up)" + String.valueOf(xpos) + String.valueOf(ypos));
+//            case MotionEvent.ACTION_MOVE:
+//                Log.d("DEBUG", "On touch (move)" + String.valueOf(xpos) + String.valueOf(ypos));
+//                break;
+        }
+        return true;
+
     }
 }
