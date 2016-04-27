@@ -11,12 +11,20 @@ import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
 
-    public void makeMove(View v) {
-        String fieldName = getResources().getResourceEntryName(v.getId());
-        Log.i("DEBUG", fieldName);
-        ImageView test = (ImageView)findViewById(v.getId());
-        test.setVisibility(View.INVISIBLE);
+    Game game = new Game();
 
+//    public void makeMove(View v) {
+//        game.makeMove(v);
+//    }
+
+
+    // This method gets the click event and passes that information to the game
+    public void makeMove(View v) {
+        int idOfBox = v.getId();
+        String nameOfTarget = getResources().getResourceEntryName(idOfBox);
+        ImageView currentTarget = (ImageView)findViewById(idOfBox);
+        currentTarget.setVisibility(View.INVISIBLE);
+        game.makeMove(nameOfTarget);
     }
 
     @Override
