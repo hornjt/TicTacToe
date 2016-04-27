@@ -1,5 +1,6 @@
 package com.hornj.tictactoe;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -13,18 +14,35 @@ public class MainActivity extends ActionBarActivity {
 
     private Game game;
 
-//    public void makeMove(View v) {
-//        game.makeMove(v);
-//    }
-
-
     // This method gets the click event and passes that information to the game
     public void makeMove(View v) {
         int idOfBox = v.getId();
         String nameOfTarget = getResources().getResourceEntryName(idOfBox);
+
+        // Find the id number of the box clicked
+        String targetNumber = nameOfTarget.substring(nameOfTarget.length() - 1);
+        int moveNumber = Integer.parseInt(targetNumber);
+
         ImageView currentTarget = (ImageView)findViewById(idOfBox);
         currentTarget.setVisibility(View.INVISIBLE);
-        game.makeMove(nameOfTarget);
+        game.makeMove(moveNumber);
+        setIcon(moveNumber, game.getCurrentPlayer());
+    }
+
+    private void setIcon(int moveId, int playerNumber) {
+        if (playerNumber == 1) {
+            String xMove = "x" + moveId;
+            buildIcon(xMove);
+        } else {
+            String oMove = "o" + moveId;
+            buildIcon(oMove);
+        }
+    }
+
+    private void buildIcon(String moveLocation) {
+        int resId = getApplicationContext().getResources().getIdentifier(moveLocation, "id", this.getPackageName());
+        ImageView x = (ImageView)findViewById(resId);
+        x.setVisibility(View.VISIBLE);
     }
 
     @Override

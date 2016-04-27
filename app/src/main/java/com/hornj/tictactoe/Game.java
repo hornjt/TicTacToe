@@ -1,6 +1,7 @@
 package com.hornj.tictactoe;
 
 import android.util.Log;
+import android.widget.ImageView;
 
 /**
  * Created by Jon on 4/26/16.
@@ -15,11 +16,11 @@ public class Game {
         this.currentPlayer = 1;
     }
 
-    public void makeMove(String fieldId) {
-        System.out.println(fieldId);
-        // Find the id of the box clicked and pass that to the player
-        String targetNumber = fieldId.substring(fieldId.length() - 1);
-        int moveNumber = Integer.parseInt(targetNumber);
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void makeMove(int moveNumber) {
 
 //        this.currentPlayer.addPlayerMove(moveNumber);
 
@@ -29,15 +30,17 @@ public class Game {
                 Log.i("GAME OVER", "Player 1 Wins");
                 return;
             }
-//            currentPlayer = 2;
+            currentPlayer = 2;
         } else {
             this.gameMoves[moveNumber] = 2;
-            if (checkIfWinner() == 1) {
-                Log.i("GAME OVER", "Player 1 Wins");
+            if (checkIfWinner() == 2) {
+                Log.i("GAME OVER", "Player 2 Wins");
                 return;
             }
             currentPlayer = 1;
         }
+        System.out.println(this.gameMoves);
+
     }
 
     // Logic for determining winner
