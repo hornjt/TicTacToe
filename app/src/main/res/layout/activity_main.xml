@@ -294,4 +294,14 @@
         android:layout_alignStart="@+id/x9"
         android:visibility="invisible" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Game"
+        android:id="@+id/newGameButton"
+        android:layout_above="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:onClick="newGame" />
+
 </RelativeLayout>

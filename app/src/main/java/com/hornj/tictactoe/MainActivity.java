@@ -1,5 +1,6 @@
 package com.hornj.tictactoe;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -27,6 +28,12 @@ public class MainActivity extends ActionBarActivity {
         currentTarget.setVisibility(View.INVISIBLE);
         setIcon(moveNumber, game.getCurrentPlayer());
         game.playerMove(moveNumber);
+    }
+
+    public void newGame(View v) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 
     // This method is called to turn the icon on depending on the player
