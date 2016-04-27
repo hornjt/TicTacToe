@@ -1,7 +1,6 @@
 package com.hornj.tictactoe;
 
 import android.util.Log;
-import java.util.Arrays;
 
 /**
  * Created by Jon on 4/26/16.
@@ -10,22 +9,25 @@ public class Game {
 
     private int[] gameMoves = new int[10];
     private int currentPlayer = 1;
-    private int player1Wins = 0;
-    private int player2Wins = 0;
 
     public int getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void playerMove(int moveNumber) {
+    public void playerMove(int boxIndex) {
 
-        this.gameMoves[moveNumber] = currentPlayer;
+        this.gameMoves[boxIndex] = currentPlayer;
 
         if (checkIfWinner() != -1) {
             Log.i("GAME OVER", "Player " + currentPlayer + " Wins");
             return;
         } else changePlayer();
+    }
 
+    public boolean currentBoxIsFull(int boxIndex) {
+        if (gameMoves[boxIndex] != 0) {
+            return true;
+        } else return false;
     }
 
     private void changePlayer() {
@@ -37,27 +39,25 @@ public class Game {
     // Logic for determining winner
     private int checkIfWinner() {
 
-        for (int i = 1; i < 3; i++) {
-            if (this.gameMoves[1] == i) {
-                if ((this.gameMoves[2] == i && this.gameMoves[3] == i) ||
-                        (this.gameMoves[4] == i && this.gameMoves[7] == i) ||
-                        (this.gameMoves[5] == i && this.gameMoves[9] == i))
-                    return i;
-            } else if (this.gameMoves[2] == i) {
-                if (this.gameMoves[5] == i && this.gameMoves[8] == i) {
-                    return i;
-                }
-            } else if (this.gameMoves[3] == i) {
-                if ((this.gameMoves[6] == i && this.gameMoves[9] == i) ||
-                        (this.gameMoves[5] == i && this.gameMoves[7] == i)) {
-                    return i;
-                }
-            } else if (this.gameMoves[4] == i && this.gameMoves[5] == i && this.gameMoves[6] == i) {
-                return i;
+        if (gameMoves[1] == currentPlayer) {
+            if ((gameMoves[2] == currentPlayer && gameMoves[3] == currentPlayer) ||
+                    (gameMoves[4] == currentPlayer && gameMoves[7] == currentPlayer) ||
+                    (gameMoves[5] == currentPlayer && gameMoves[9] == currentPlayer))
+                return currentPlayer;
+        } else if (gameMoves[2] == currentPlayer) {
+            if (gameMoves[5] == currentPlayer && gameMoves[8] == currentPlayer) {
+                return currentPlayer;
             }
-            else if (this.gameMoves[7] == i && this.gameMoves[8] == i && this.gameMoves[9] == i) {
-                return i;
+        } else if (gameMoves[3] == currentPlayer) {
+            if ((gameMoves[6] == currentPlayer && gameMoves[9] == currentPlayer) ||
+                    (gameMoves[5] == currentPlayer && gameMoves[7] == currentPlayer)) {
+                return currentPlayer;
             }
+        } else if (gameMoves[4] == currentPlayer && gameMoves[5] == currentPlayer && gameMoves[6] == currentPlayer) {
+            return currentPlayer;
+        }
+        else if (gameMoves[7] == currentPlayer && gameMoves[8] == currentPlayer && gameMoves[9] == currentPlayer) {
+            return currentPlayer;
         }
         return -1;
     }

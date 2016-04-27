@@ -10,50 +10,38 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
+    // Player 1 is Black O
+    // Player 2 is Red X
+
     private Game game;
 
-    // This method gets the click event and passes that information to the game
-    public void makeMove(View v) {
-        int idOfBox = v.getId();
-        String nameOfTarget = getResources().getResourceEntryName(idOfBox);
+    public void displayIcon(View view) {
+        ImageView currentBox = (ImageView)findViewById(view.getId());
+        int boxIndex = Integer.parseInt(currentBox.getTag().toString());
 
-        // Find the id number of the box clicked
-        String targetNumber = nameOfTarget.substring(nameOfTarget.length() - 1);
-        int moveNumber = Integer.parseInt(targetNumber);
+        // Check if box has already been clicked
+        if (game.currentBoxIsFull(boxIndex)) {
+            Toast.makeText(getApplicationContext(), "Box has already been chosen",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        ImageView currentTarget = (ImageView)findViewById(idOfBox);
-        currentTarget.setVisibility(View.INVISIBLE);
-        setIcon(moveNumber, game.getCurrentPlayer());
-        game.playerMove(moveNumber);
+        if (game.getCurrentPlayer() == 1) {
+            currentBox.setImageResource(R.drawable.o_black);
+        } else {
+            currentBox.setImageResource(R.drawable.x_red);
+        }
+        game.playerMove(boxIndex);
     }
 
     public void newGame(View v) {
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-    }
-
-    // This method is called to turn the icon on depending on the player
-    // and where they clicked
-    private void setIcon(int moveId, int playerNumber) {
-        if (playerNumber == 1) {
-            String xMove = "x" + moveId;
-            buildIcon(xMove);
-        } else {
-            String oMove = "o" + moveId;
-            buildIcon(oMove);
-        }
-    }
-
-    // Helper function to setIcon() to look up the resource by id name
-    private void buildIcon(String moveLocation) {
-        int resId = getResources()
-                .getIdentifier(moveLocation, "id", this.getPackageName());
-        ImageView x = (ImageView)findViewById(resId);
-        x.setVisibility(View.VISIBLE);
     }
 
     @Override
