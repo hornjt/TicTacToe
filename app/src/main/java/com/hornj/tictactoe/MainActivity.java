@@ -84,25 +84,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public boolean onTouchEvent(MotionEvent e)
-    {
-        int xpos=(int) e.getX();
-        int ypos=(int) e.getY();
-        switch (e.getAction())
-        {
-            case MotionEvent.ACTION_DOWN:
-//                Log.d("DEBUG", "On touch (down)" + String.valueOf(xpos) + String.valueOf(ypos));
-//                Log.d("DEBUG", "X: " + String.valueOf(xpos));
-//                Log.d("DEBUG", "Y: " + String.valueOf(ypos));
-
-//            case MotionEvent.ACTION_UP:
-//                Log.d("DEBUG", "On touch (up)" + String.valueOf(xpos) + String.valueOf(ypos));
-//            case MotionEvent.ACTION_MOVE:
-//                Log.d("DEBUG", "On touch (move)" + String.valueOf(xpos) + String.valueOf(ypos));
-//                break;
-        }
-        return true;
-
-    }
 }

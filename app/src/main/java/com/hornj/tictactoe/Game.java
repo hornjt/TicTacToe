@@ -17,12 +17,6 @@ public class Game {
         return currentPlayer;
     }
 
-    private void changePlayer() {
-        if (currentPlayer == 1) {
-            currentPlayer = 2;
-        } else currentPlayer = 1;
-    }
-
     public void playerMove(int moveNumber) {
 
         this.gameMoves[moveNumber] = currentPlayer;
@@ -32,6 +26,12 @@ public class Game {
             return;
         } else changePlayer();
 
+    }
+
+    private void changePlayer() {
+        if (currentPlayer == 1) {
+            currentPlayer = 2;
+        } else currentPlayer = 1;
     }
 
     // Logic for determining winner
