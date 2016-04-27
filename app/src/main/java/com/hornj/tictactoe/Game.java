@@ -1,9 +1,6 @@
 package com.hornj.tictactoe;
 
 import android.util.Log;
-import android.widget.ImageView;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -13,43 +10,33 @@ public class Game {
 
     private int[] gameMoves = new int[10];
     private int currentPlayer = 1;
-
-    public void newGame() {
-        this.gameMoves = new int[10];
-        this.currentPlayer = 1;
-    }
+    private int player1Wins = 0;
+    private int player2Wins = 0;
 
     public int getCurrentPlayer() {
         return currentPlayer;
     }
 
+    private void changePlayer() {
+        if (currentPlayer == 1) {
+            currentPlayer = 2;
+        } else currentPlayer = 1;
+    }
+
     public void playerMove(int moveNumber) {
 
-//        this.currentPlayer.addPlayerMove(moveNumber);
+        this.gameMoves[moveNumber] = currentPlayer;
 
-        if (this.currentPlayer == 1) {
-            this.gameMoves[moveNumber] = 1;
-            System.out.println(Arrays.toString(this.gameMoves));
-            if (checkIfWinner() == 1) {
-                Log.i("GAME OVER", "Player 1 Wins");
-                return;
-            }
-            currentPlayer = 2;
-        } else {
-            this.gameMoves[moveNumber] = 2;
-            System.out.println(Arrays.toString(this.gameMoves));
-            if (checkIfWinner() == 2) {
-                Log.i("GAME OVER", "Player 2 Wins");
-                return;
-            }
-            currentPlayer = 1;
-        }
-
+        if (checkIfWinner() != -1) {
+            Log.i("GAME OVER", "Player " + currentPlayer + " Wins");
+            return;
+        } else changePlayer();
 
     }
 
     // Logic for determining winner
     private int checkIfWinner() {
+
         for (int i = 1; i < 3; i++) {
             if (this.gameMoves[1] == i) {
                 if ((this.gameMoves[2] == i && this.gameMoves[3] == i) ||
