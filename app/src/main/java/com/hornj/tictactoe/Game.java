@@ -1,14 +1,14 @@
 package com.hornj.tictactoe;
 
+import android.util.Log;
+
 /**
  * Created by Jon on 4/26/16.
  */
 public class Game {
 
     private int[] gameMoves = new int[10];
-//    private int[] player1Moves = new int[10];
-//    private int[] player2Moves = new int[10];
-    private int currentPlayer;
+    private int currentPlayer = 1;
 
     public void newGame() {
         this.gameMoves = new int[10];
@@ -16,16 +16,26 @@ public class Game {
     }
 
     public void makeMove(String fieldId) {
+        System.out.println(fieldId);
         // Find the id of the box clicked and pass that to the player
-        int moveNumber = Integer.parseInt(fieldId.substring(0, fieldId.length() - 1));
+        String targetNumber = fieldId.substring(fieldId.length() - 1);
+        int moveNumber = Integer.parseInt(targetNumber);
 
 //        this.currentPlayer.addPlayerMove(moveNumber);
 
         if (this.currentPlayer == 1) {
             this.gameMoves[moveNumber] = 1;
-            currentPlayer = 2;
+            if (checkIfWinner() == 1) {
+                Log.i("GAME OVER", "Player 1 Wins");
+                return;
+            }
+//            currentPlayer = 2;
         } else {
             this.gameMoves[moveNumber] = 2;
+            if (checkIfWinner() == 1) {
+                Log.i("GAME OVER", "Player 1 Wins");
+                return;
+            }
             currentPlayer = 1;
         }
     }

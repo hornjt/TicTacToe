@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
 
-    Game game = new Game();
+    private Game game;
 
 //    public void makeMove(View v) {
 //        game.makeMove(v);
@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        game = new Game();
     }
 
     @Override
