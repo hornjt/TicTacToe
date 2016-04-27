@@ -25,10 +25,12 @@ public class MainActivity extends ActionBarActivity {
 
         ImageView currentTarget = (ImageView)findViewById(idOfBox);
         currentTarget.setVisibility(View.INVISIBLE);
-        game.makeMove(moveNumber);
         setIcon(moveNumber, game.getCurrentPlayer());
+        game.playerMove(moveNumber);
     }
 
+    // This method is called to turn the icon on depending on the player
+    // and where they clicked
     private void setIcon(int moveId, int playerNumber) {
         if (playerNumber == 1) {
             String xMove = "x" + moveId;
@@ -39,8 +41,10 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    // Helper function to setIcon() to look up the resource by id name
     private void buildIcon(String moveLocation) {
-        int resId = getApplicationContext().getResources().getIdentifier(moveLocation, "id", this.getPackageName());
+        int resId = getResources()
+                .getIdentifier(moveLocation, "id", this.getPackageName());
         ImageView x = (ImageView)findViewById(resId);
         x.setVisibility(View.VISIBLE);
     }
@@ -82,8 +86,8 @@ public class MainActivity extends ActionBarActivity {
         {
             case MotionEvent.ACTION_DOWN:
 //                Log.d("DEBUG", "On touch (down)" + String.valueOf(xpos) + String.valueOf(ypos));
-                Log.d("DEBUG", "X: " + String.valueOf(xpos));
-                Log.d("DEBUG", "Y: " + String.valueOf(ypos));
+//                Log.d("DEBUG", "X: " + String.valueOf(xpos));
+//                Log.d("DEBUG", "Y: " + String.valueOf(ypos));
 
 //            case MotionEvent.ACTION_UP:
 //                Log.d("DEBUG", "On touch (up)" + String.valueOf(xpos) + String.valueOf(ypos));

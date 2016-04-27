@@ -3,6 +3,9 @@ package com.hornj.tictactoe;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * Created by Jon on 4/26/16.
  */
@@ -20,12 +23,13 @@ public class Game {
         return currentPlayer;
     }
 
-    public void makeMove(int moveNumber) {
+    public void playerMove(int moveNumber) {
 
 //        this.currentPlayer.addPlayerMove(moveNumber);
 
         if (this.currentPlayer == 1) {
             this.gameMoves[moveNumber] = 1;
+            System.out.println(Arrays.toString(this.gameMoves));
             if (checkIfWinner() == 1) {
                 Log.i("GAME OVER", "Player 1 Wins");
                 return;
@@ -33,13 +37,14 @@ public class Game {
             currentPlayer = 2;
         } else {
             this.gameMoves[moveNumber] = 2;
+            System.out.println(Arrays.toString(this.gameMoves));
             if (checkIfWinner() == 2) {
                 Log.i("GAME OVER", "Player 2 Wins");
                 return;
             }
             currentPlayer = 1;
         }
-        System.out.println(this.gameMoves);
+
 
     }
 
